@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Heebo } from "next/font/google";
 import "./globals.css";
 
@@ -12,6 +12,12 @@ const heebo = Heebo({
 export const metadata: Metadata = {
   title: "מחנה אימונים SKILLZ 2026 | קפריסין",
   description: "מחנה אימוני כדורסל SKILLZ 2026 – לימסול, קפריסין | 1-9 ביולי 2026",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({

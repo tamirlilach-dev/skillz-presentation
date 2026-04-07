@@ -350,7 +350,7 @@ html, body {
 
 /* ─── Mobile nav: hide arrows on small screens ───────────────── */
 .nav-arrow { display: none; }
-@media (min-width: 768px) { .nav-arrow { display: flex; } }
+@media (min-width: 1024px) { .nav-arrow { display: flex; } }
 
 /* ─── reduced-motion ─────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
