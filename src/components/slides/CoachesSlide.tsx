@@ -94,23 +94,19 @@ export default function CoachesSlide({ isActive }: CoachesSlideProps) {
                 />
               </div>
 
-              {/* Name + accent line */}
-              <div className="text-right sm:text-center flex-1">
-                <h3 className="text-base sm:text-lg md:text-xl font-black text-white">{coach.name}</h3>
+              {/* Name + details (combined in flex-1 on mobile) */}
+              <div className="flex-1 flex flex-col gap-0.5 sm:gap-2 sm:items-center sm:text-center text-right">
+                <h3 className="text-sm sm:text-lg md:text-xl font-black text-white leading-tight">{coach.name}</h3>
                 <div
-                  className="h-0.5 mt-2 mx-auto rounded-full transition-all duration-300 group-hover:w-20"
+                  className="h-0.5 rounded-full hidden sm:block"
                   style={{ width: 40, background: "linear-gradient(90deg, #e63946, #ff6b6b)" }}
                 />
-              </div>
-
-              {/* Details */}
-              <ul className="flex flex-col gap-0.5 sm:gap-1 w-full text-right sm:text-center">
                 {coach.details.map((d) => (
-                  <li key={d} className="text-xs" style={{ color: "#b0b0b0" }}>
+                  <p key={d} className="text-xs leading-snug" style={{ color: "#b0b0b0" }}>
                     {d}
-                  </li>
+                  </p>
                 ))}
-              </ul>
+              </div>
             </motion.div>
           ))}
         </motion.div>

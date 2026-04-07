@@ -17,7 +17,6 @@ export default function SlideNavigation({ swiper, currentSlide, totalSlides }: S
     width: 48,
     height: 48,
     borderRadius: "50%",
-    display: "flex",
     alignItems: "center",
     justifyContent: "center",
     background: "rgba(255,255,255,0.06)",

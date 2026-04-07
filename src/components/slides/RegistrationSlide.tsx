@@ -94,23 +94,22 @@ export default function RegistrationSlide({ isActive }: RegistrationSlideProps) 
               </motion.div>
             ))}
           </div>
-          {/* Mobile: vertical timeline */}
-          <div className="flex flex-col gap-3 lg:hidden relative">
-            <div className="absolute top-5 bottom-5 right-5 w-px" style={{ background: "linear-gradient(to bottom, #dc2626, #f87171, #dc2626)", boxShadow: "0 0 8px rgba(220,38,38,0.4)" }} />
+          {/* Mobile: simple vertical list */}
+          <div className="flex flex-col gap-4 lg:hidden px-2">
             {PAYMENT_STEPS.map((step, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.5 + i * 0.12 }}
-                className="flex items-center gap-3 relative z-10 pr-10"
+                className="flex items-center gap-4"
               >
-                <div className="absolute right-0 w-10 h-10 rounded-full flex items-center justify-center font-black text-sm text-white flex-shrink-0"
+                <div className="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm text-white flex-shrink-0"
                   style={{ background: "linear-gradient(135deg, #dc2626, #b91c1c)", boxShadow: "0 0 16px rgba(220,38,38,0.55)" }}>
                   {i + 1}
                 </div>
-                <div>
-                  <p className="text-xs" style={{ color: "#555" }}>{step.date}</p>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs" style={{ color: "#777" }}>{step.date}</p>
                   <p className="text-sm font-bold text-white leading-tight">{step.title}</p>
                   <p className="text-sm font-bold" style={{ color: "#dc2626" }}>{step.amount}</p>
                 </div>
