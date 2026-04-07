@@ -87,7 +87,7 @@ function FlipCard({ number, title, back }: { number: string; title: string; back
            style={{ transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)" }}>
         {/* Front */}
         <div
-          className="flip-card-front w-full h-full rounded-2xl flex flex-col items-center justify-center gap-3 p-6"
+          className="flip-card-front w-full h-full rounded-2xl flex flex-col items-center justify-center gap-2 p-3 sm:p-5"
           style={{
             background: "rgba(255,255,255,0.025)",
             border: "1px solid rgba(255,255,255,0.07)",
@@ -98,7 +98,7 @@ function FlipCard({ number, title, back }: { number: string; title: string; back
           <span
             className="font-black leading-none select-none"
             style={{
-              fontSize: "clamp(3.5rem, 7vw, 5.5rem)",
+              fontSize: "clamp(2rem, 7vw, 5.5rem)",
               background: "linear-gradient(135deg, #e63946 0%, #ff6b6b 60%, #e63946 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
@@ -115,7 +115,7 @@ function FlipCard({ number, title, back }: { number: string; title: string; back
 
         {/* Back */}
         <div
-          className="flip-card-back w-full h-full rounded-2xl flex flex-col items-center justify-center p-5 gap-3"
+          className="flip-card-back w-full h-full rounded-2xl flex flex-col items-center justify-center p-3 sm:p-5 gap-2"
           style={{
             background: "linear-gradient(135deg, rgba(230,57,70,0.85) 0%, rgba(180,30,40,0.95) 100%)",
             border: "1px solid rgba(230,57,70,0.4)",
