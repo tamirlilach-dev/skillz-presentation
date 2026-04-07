@@ -72,7 +72,7 @@ export default function RegistrationSlide({ isActive }: RegistrationSlideProps) 
           className="w-full max-w-2xl"
         >
           {/* Desktop: horizontal timeline */}
-          <div className="hidden md:flex flex-row items-center gap-0 relative">
+          <div className="hidden lg:flex flex-row items-center gap-0 relative">
             <div className="absolute top-5 right-10 left-10 h-px" style={{ background: "rgba(220,38,38,0.3)" }} />
             <div className="absolute top-5 right-10 h-px transition-all duration-1000"
               style={{ width: "calc(100% - 80px)", background: "linear-gradient(90deg, #dc2626, #f87171, #dc2626)", boxShadow: "0 0 12px rgba(220,38,38,0.5)" }} />
@@ -95,7 +95,7 @@ export default function RegistrationSlide({ isActive }: RegistrationSlideProps) 
             ))}
           </div>
           {/* Mobile: vertical timeline */}
-          <div className="flex flex-col gap-3 md:hidden relative">
+          <div className="flex flex-col gap-3 lg:hidden relative">
             <div className="absolute top-5 bottom-5 right-5 w-px" style={{ background: "linear-gradient(to bottom, #dc2626, #f87171, #dc2626)", boxShadow: "0 0 8px rgba(220,38,38,0.4)" }} />
             {PAYMENT_STEPS.map((step, i) => (
               <motion.div

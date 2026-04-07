@@ -96,19 +96,18 @@ export default function SecuritySlide({ isActive }: SecuritySlideProps) {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 w-full max-w-5xl"
+          className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6 w-full max-w-5xl"
         >
           {COLUMNS.map(({ Icon, title, text }) => (
             <motion.div
               key={title}
               variants={cardVariant}
-              className="flex flex-col items-center text-center gap-4 rounded-2xl slide-grain"
+              className="flex flex-col items-center text-center gap-3 rounded-2xl slide-grain p-4 md:p-8"
               style={{
                 background: "rgba(255,255,255,0.025)",
                 border: "1px solid rgba(230,57,70,0.4)",
                 backdropFilter: "blur(20px)",
                 boxShadow: "0 0 8px rgba(230,57,70,0.3), 0 0 20px rgba(230,57,70,0.12)",
-                padding: "32px",
                 transition: "all 0.4s cubic-bezier(0.4,0,0.2,1)",
               }}
               onMouseEnter={(e) => {
@@ -124,7 +123,7 @@ export default function SecuritySlide({ isActive }: SecuritySlideProps) {
             >
               {/* Icon with pulse glow */}
               <motion.div
-                className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0"
+                className="w-10 h-10 md:w-16 md:h-16 rounded-xl md:rounded-2xl flex items-center justify-center flex-shrink-0"
                 style={{
                   background: "rgba(230,57,70,0.1)",
                   border: "1px solid rgba(230,57,70,0.2)",
@@ -138,7 +137,7 @@ export default function SecuritySlide({ isActive }: SecuritySlideProps) {
                 }}
                 transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
               >
-                <Icon className="w-8 h-8" style={{ color: "#e63946" }} />
+                <Icon className="w-5 h-5 md:w-8 md:h-8" style={{ color: "#e63946" }} />
               </motion.div>
 
               <h3
@@ -147,7 +146,7 @@ export default function SecuritySlide({ isActive }: SecuritySlideProps) {
               >
                 {title}
               </h3>
-              <p className="text-xs md:text-sm leading-relaxed" style={{ color: "#b0b0b0", lineHeight: 1.65 }}>
+              <p className="text-sm leading-relaxed" style={{ color: "#b0b0b0", lineHeight: 1.65 }}>
                 <HighlightedText text={text} />
               </p>
             </motion.div>

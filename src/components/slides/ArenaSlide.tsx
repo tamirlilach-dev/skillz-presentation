@@ -148,10 +148,10 @@ export default function ArenaSlide({ isActive }: ArenaSlideProps) {
               </span>
 
               <div className="relative">
-                <h3 className="text-sm md:text-base font-bold mb-1" style={{ color: "#e63946" }}>
+                <h3 className="text-base md:text-lg font-bold mb-1" style={{ color: "#e63946" }}>
                   מתחם אימונים מקצועי
                 </h3>
-                <p className="text-xs md:text-sm leading-relaxed" style={{ color: "#d0d0d0", lineHeight: 1.7 }}>
+                <p className="text-sm md:text-base leading-relaxed" style={{ color: "#d0d0d0", lineHeight: 1.7 }}>
                   שני אולמות כדורסל תקניים ברמה הגבוהה ביותר, צמודים למלון כדי למקסם את זמן האימון ולשמור על מיקוד.
                 </p>
               </div>
@@ -159,10 +159,10 @@ export default function ArenaSlide({ isActive }: ArenaSlideProps) {
               <div className="accent-line opacity-40" />
 
               <div className="relative">
-                <h3 className="text-sm md:text-base font-bold mb-1" style={{ color: "#e63946" }}>
+                <h3 className="text-base md:text-lg font-bold mb-1" style={{ color: "#e63946" }}>
                   תחרות בינלאומית
                 </h3>
-                <p className="text-xs md:text-sm leading-relaxed" style={{ color: "#d0d0d0", lineHeight: 1.7 }}>
+                <p className="text-sm md:text-base leading-relaxed" style={{ color: "#d0d0d0", lineHeight: 1.7 }}>
                   משחקי אימון מרתקים נגד קבוצות נוער מקומיות מקפריסין. חוויה שמעלה את הרמה התחרותית ומדמה משחקי חוץ באירופה.
                 </p>
               </div>
@@ -170,7 +170,7 @@ export default function ArenaSlide({ isActive }: ArenaSlideProps) {
               {/* Walking distance badge */}
               <div className="relative flex">
                 <span
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold text-white"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-bold text-white"
                   style={{
                     background: "linear-gradient(135deg, #e63946, #c1303b)",
                     boxShadow: "0 2px 12px rgba(230,57,70,0.4)",

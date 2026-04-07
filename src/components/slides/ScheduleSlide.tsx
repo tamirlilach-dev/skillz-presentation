@@ -239,7 +239,7 @@ export default function ScheduleSlide({ isActive }: ScheduleSlideProps) {
 
       {/* ── Day buttons: staggered slide-down from right→left ─── */}
       {isActive && (
-        <div className="flex flex-wrap justify-center gap-1.5 md:gap-2 w-full max-w-4xl">
+        <div className="grid grid-cols-3 md:flex md:flex-wrap md:justify-center gap-2 w-full max-w-4xl">
           {SCHEDULE.map((s, i) => (
             <motion.button
               key={s.day}
@@ -247,14 +247,14 @@ export default function ScheduleSlide({ isActive }: ScheduleSlideProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.35 + i * 0.07, ease: EASE_SPRING }}
               onClick={() => setSelectedDay(i)}
-              className="px-2.5 md:px-3 py-1.5 md:py-2 rounded-xl text-xs font-bold"
+              className="px-3 md:px-3 py-2 md:py-2 rounded-xl text-sm md:text-xs font-bold"
               style={{
                 background: i === selectedDay ? "linear-gradient(135deg, #e63946, #c1303b)" : "rgba(255,255,255,0.04)",
                 border: i === selectedDay ? "1px solid #e63946" : "1px solid rgba(255,255,255,0.08)",
                 color: i === selectedDay ? "#fff" : "#b0b0b0",
                 boxShadow: i === selectedDay ? "0 0 20px rgba(230,57,70,0.35)" : "",
                 backdropFilter: "blur(8px)",
-                minWidth: 48,
+                minWidth: 60,
                 transition: "background 0.3s, border-color 0.3s, color 0.3s, box-shadow 0.3s",
               }}
             >

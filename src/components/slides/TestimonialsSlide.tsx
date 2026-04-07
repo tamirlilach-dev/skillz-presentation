@@ -134,7 +134,7 @@ export default function TestimonialsSlide({ isActive }: TestimonialsSlideProps) 
               >
                 <p
                   className="relative leading-relaxed"
-                  style={{ color: "#d0d0d0", lineHeight: 1.75, fontSize: "clamp(0.8rem, 1.5vw, 0.95rem)", minHeight: "5rem" }}
+                  style={{ color: "#d0d0d0", lineHeight: 1.75, fontSize: "clamp(1rem, 1.5vw, 1.05rem)", minHeight: "4rem" }}
                 >
                   <TypingText text={t.text} isActive={isActive} delay={0.7 + i * 0.2} />
                 </p>

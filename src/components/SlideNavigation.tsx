@@ -33,7 +33,7 @@ export default function SlideNavigation({ swiper, currentSlide, totalSlides }: S
       {currentSlide > 0 && (
         <button
           onClick={goPrev}
-          className="nav-arrow fixed top-1/2 -translate-y-1/2 z-50 group hidden lg:flex"
+          className="nav-arrow fixed top-1/2 -translate-y-1/2 z-50 group hidden xl:flex"
           style={{ ...arrowStyle, right: 80 }}
           aria-label="הסלייד הקודם"
           onMouseEnter={(e) => {
@@ -61,7 +61,7 @@ export default function SlideNavigation({ swiper, currentSlide, totalSlides }: S
       {currentSlide < totalSlides - 1 && (
         <button
           onClick={goNext}
-          className="nav-arrow fixed top-1/2 -translate-y-1/2 z-50 group hidden lg:flex"
+          className="nav-arrow fixed top-1/2 -translate-y-1/2 z-50 group hidden xl:flex"
           style={{ ...arrowStyle, left: 80 }}
           aria-label="הסלייד הבא"
           onMouseEnter={(e) => {
@@ -94,8 +94,8 @@ export default function SlideNavigation({ swiper, currentSlide, totalSlides }: S
             aria-label={`עבור לסלייד ${i + 1}`}
             className="rounded-full transition-all duration-350"
             style={{
-              width: i === currentSlide ? 26 : 8,
-              height: i === currentSlide ? 8 : 8,
+              width: i === currentSlide ? 20 : 6,
+              height: 6,
               background: i === currentSlide ? "#e63946" : "rgba(255,255,255,0.3)",
               boxShadow: i === currentSlide ? "0 0 16px rgba(230,57,70,0.65)" : "",
               transform: i === currentSlide ? "scale(1.15)" : "scale(1)",

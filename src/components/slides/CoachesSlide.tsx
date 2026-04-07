@@ -23,7 +23,7 @@ export default function CoachesSlide({ isActive }: CoachesSlideProps) {
   return (
     <div
       dir="rtl"
-      className="slide-rtl w-full h-screen flex flex-col items-center justify-center px-4 md:px-12 gap-6 md:gap-8 relative overflow-hidden slide-grain bg-pattern-parquet"
+      className="slide-rtl w-full h-screen flex flex-col items-center justify-center px-4 md:px-12 gap-3 md:gap-8 relative overflow-hidden slide-grain bg-pattern-parquet"
     >
       {/* Header */}
       {isActive && (
@@ -54,18 +54,17 @@ export default function CoachesSlide({ isActive }: CoachesSlideProps) {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-5xl"
+          className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 w-full max-w-5xl"
         >
           {COACHES.map((coach) => (
             <motion.div
               key={coach.name}
               variants={cardVariant}
-              className="group flex flex-col items-center gap-4 rounded-2xl relative overflow-hidden slide-grain"
+              className="group flex flex-row sm:flex-col items-center gap-3 sm:gap-4 rounded-2xl relative overflow-hidden slide-grain p-3 sm:p-6"
               style={{
                 background: "rgba(255,255,255,0.025)",
                 border: "1px solid #e63946",
                 backdropFilter: "blur(20px)",
-                padding: "2rem 1.5rem 1.5rem",
                 boxShadow: "0 0 8px rgba(230,57,70,0.4), 0 0 20px rgba(230,57,70,0.15), inset 0 0 8px rgba(230,57,70,0.05)",
                 transition: "box-shadow 0.3s ease, transform 0.3s ease",
               }}
@@ -81,7 +80,7 @@ export default function CoachesSlide({ isActive }: CoachesSlideProps) {
               }}
             >
               <div
-                className="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden flex-shrink-0"
+                className="relative w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full overflow-hidden flex-shrink-0"
                 style={{ boxShadow: "0 0 0 3px #e63946, 0 0 30px rgba(230,57,70,0.3)" }}
               >
                 <Image
@@ -96,18 +95,18 @@ export default function CoachesSlide({ isActive }: CoachesSlideProps) {
               </div>
 
               {/* Name + accent line */}
-              <div className="text-center">
-                <h3 className="text-lg md:text-xl font-black text-white">{coach.name}</h3>
+              <div className="text-right sm:text-center flex-1">
+                <h3 className="text-base sm:text-lg md:text-xl font-black text-white">{coach.name}</h3>
                 <div
                   className="h-0.5 mt-2 mx-auto rounded-full transition-all duration-300 group-hover:w-20"
                   style={{ width: 40, background: "linear-gradient(90deg, #e63946, #ff6b6b)" }}
                 />
               </div>
 
-              {/* Details – visible on mobile, hover on desktop */}
-              <ul className="flex flex-col gap-1 w-full text-center">
+              {/* Details */}
+              <ul className="flex flex-col gap-0.5 sm:gap-1 w-full text-right sm:text-center">
                 {coach.details.map((d) => (
-                  <li key={d} className="text-xs md:text-sm" style={{ color: "#b0b0b0" }}>
+                  <li key={d} className="text-xs" style={{ color: "#b0b0b0" }}>
                     {d}
                   </li>
                 ))}
