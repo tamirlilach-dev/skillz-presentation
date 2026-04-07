@@ -352,6 +352,20 @@ html, body {
 .nav-arrow { display: none; }
 @media (min-width: 1280px) { .nav-arrow { display: flex; } }
 
+/* ─── Mobile Swiper: allow slides to grow taller than viewport ── */
+/* Swiper forces height:100% + overflow:hidden on .swiper-slide,  */
+/* which clips content on small screens. Override below 1024px.   */
+@media (max-width: 1023px) {
+  .swiper-slide {
+    height: auto !important;
+    overflow-y: auto !important;
+  }
+  /* Ensure every slide is at least full-screen height */
+  .slide-rtl {
+    min-height: 100vh;
+  }
+}
+
 /* ─── Safe-area inset (iPhone notch / Dynamic Island) ────────── */
 .slide-rtl {
   padding-top: env(safe-area-inset-top, 0px);
