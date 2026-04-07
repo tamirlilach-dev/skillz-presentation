@@ -9,9 +9,26 @@ const heebo = Heebo({
   display: "swap",
 });
 
+const BASE_URL = "https://skillz-presentation.vercel.app";
+
 export const metadata: Metadata = {
-  title: "מחנה אימונים SKILLZ 2026 | קפריסין",
-  description: "מחנה אימוני כדורסל SKILLZ 2026 – לימסול, קפריסין | 1-9 ביולי 2026",
+  title: "מחנה אימונים SKILLZ קפריסין 2026",
+  description: "כדורסל בליגה אחרת | 1-9 ביולי 2026 | לימסול, קפריסין",
+  openGraph: {
+    title: "מחנה אימונים SKILLZ קפריסין 2026",
+    description: "כדורסל בליגה אחרת | 1-9 ביולי 2026 | לימסול, קפריסין",
+    type: "website",
+    locale: "he_IL",
+    url: BASE_URL,
+    images: [
+      {
+        url: `${BASE_URL}/images/camp_2024.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "מחנה אימונים SKILLZ קפריסין 2026",
+      },
+    ],
+  },
 };
 
 export const viewport: Viewport = {
