@@ -46,7 +46,7 @@ export default function SecuritySlide({ isActive }: SecuritySlideProps) {
   return (
     <div
       dir="rtl"
-      className="slide-rtl w-full h-screen flex flex-col items-center justify-start md:justify-center px-4 md:px-12 gap-4 md:gap-8 relative overflow-y-auto md:overflow-hidden slide-grain py-6 md:py-0"
+      className="slide-rtl w-full min-h-screen lg:h-screen flex flex-col items-center justify-start lg:justify-center px-4 md:px-12 gap-4 md:gap-8 relative overflow-y-auto lg:overflow-hidden slide-grain py-6 lg:py-0"
       style={{ background: "#0a0a0a" }}
     >
       {/* ── Layer 1 (z:1): photo ─────────────────────────────── */}

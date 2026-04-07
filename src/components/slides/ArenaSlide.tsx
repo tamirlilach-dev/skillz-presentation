@@ -35,7 +35,7 @@ export default function ArenaSlide({ isActive }: ArenaSlideProps) {
   return (
     <div
       dir="rtl"
-      className="slide-rtl w-full h-screen flex flex-col items-center justify-start md:justify-center px-4 md:px-12 gap-4 md:gap-5 relative overflow-y-auto md:overflow-hidden slide-grain bg-pattern-tactical py-4 md:py-0"
+      className="slide-rtl w-full min-h-screen lg:h-screen flex flex-col items-center justify-start md:justify-center px-4 md:px-12 gap-4 md:gap-5 relative overflow-y-auto lg:overflow-hidden slide-grain bg-pattern-tactical py-4 lg:py-0"
     >
       {/* Title */}
       {isActive && (

@@ -12,7 +12,7 @@ export default function RegistrationSlide({ isActive }: RegistrationSlideProps) 
   return (
     <div
       dir="rtl"
-      className="slide-rtl w-full h-screen flex flex-col items-center justify-center px-4 md:px-10 gap-4 md:gap-5 relative overflow-hidden overflow-y-auto slide-grain bg-pattern-burst"
+      className="slide-rtl w-full min-h-screen lg:h-screen flex flex-col items-center justify-start lg:justify-center px-4 md:px-10 gap-4 md:gap-5 relative overflow-y-auto lg:overflow-hidden slide-grain bg-pattern-burst py-6 lg:py-0"
     >
       {/* Title */}
       {isActive && (
