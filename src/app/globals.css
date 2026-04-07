@@ -353,16 +353,24 @@ html, body {
 @media (min-width: 1280px) { .nav-arrow { display: flex; } }
 
 /* ─── Mobile Swiper: allow slides to grow taller than viewport ── */
-/* Swiper forces height:100% + overflow:hidden on .swiper-slide,  */
+/* Swiper forces height:100% + overflow:hidden on all layers,     */
 /* which clips content on small screens. Override below 1024px.   */
 @media (max-width: 1023px) {
+  .swiper {
+    overflow-x: hidden !important;  /* keep horizontal clip for swipe */
+    overflow-y: visible !important; /* allow vertical growth           */
+    height: auto !important;
+  }
+  .swiper-wrapper {
+    height: auto !important;
+  }
   .swiper-slide {
     height: auto !important;
     overflow-y: auto !important;
   }
   /* Ensure every slide is at least full-screen height */
   .slide-rtl {
-    min-height: 100vh;
+    min-height: 100svh; /* svh = small viewport height, accounts for browser chrome */
   }
 }
 
