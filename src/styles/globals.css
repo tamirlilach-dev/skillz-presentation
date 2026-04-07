@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #1a1a1a;
+  --bg-card: #2a2a2a;
+  --bg-card-hover: #333333;
+  --accent-red: #e63946;
+  --accent-red-hover: #c1303b;
+  --accent-red-dark: #b71c1c;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --text-muted: #666666;
+  --border-subtle: #333333;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-heebo), 'Heebo', sans-serif;
+  direction: rtl;
+}
+
+/* Gallery and admin pages can scroll */
+.page-scrollable {
+  overflow-y: auto;
+  height: 100%;
+}
+
+/* Swiper overrides */
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Scrollbar styling for gallery/admin */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-red);
+  border-radius: 3px;
+}
+
+/* Custom animations */
+@keyframes pulse-red {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(230, 57, 70, 0);
+  }
+}
+
+.animate-pulse-red {
+  animation: pulse-red 2s ease-in-out infinite;
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.08;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(20px);
+    opacity: 0;
+  }
+}
+
+.particle {
+  animation: float-up linear infinite;
+}
+
+/* Flip card */
+.flip-card {
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  position: absolute;
+  inset: 0;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* Typing cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typing-cursor::after {
+  content: '|';
+  animation: blink 0.75s step-end infinite;
+  color: var(--accent-red);
+}
+
+/* Map container */
+.leaflet-container {
+  background: #1a1a1a !important;
+  border-radius: 12px;
+}
+
+/* Navigation dots */
+.swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.4) !important;
+  opacity: 1 !important;
+  width: 8px !important;
+  height: 8px !important;
+  transition: all 0.3s ease !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--accent-red) !important;
+  width: 24px !important;
+  border-radius: 4px !important;
+}

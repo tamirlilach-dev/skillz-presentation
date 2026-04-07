@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 \"C:/Users/tamir/.claude/skills/ui-ux-pro-max/scripts/search.py\" \"sports camp premium cinematic dark noir dramatic\" --design-system -p \"SKILLZ 2026\" -f markdown)"
+    ]
+  }
+}

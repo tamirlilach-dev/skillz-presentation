@@ -1,26 +1,361 @@
 @import "tailwindcss";
 
+/* ─── Design Tokens ─────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-elevated: #161616;
+  --accent-red: #dc2626;
+  --accent-red-hover: #b91c1c;
+  --accent-gradient: linear-gradient(135deg, #dc2626 0%, #f87171 50%, #dc2626 100%);
+  --text-primary: #ffffff;
+  --text-secondary: #d0d0d0;
+  --text-muted: #666666;
+
+  /* Glass morphism */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-bg-hover: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-hover: rgba(220, 38, 38, 0.35);
+
+  /* Glow */
+  --red-glow: 0 0 60px rgba(220, 38, 38, 0.15);
+  --red-glow-intense: 0 0 100px rgba(220, 38, 38, 0.25);
+  --card-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+
+  /* Easing */
+  --ease-out-fast: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-dramatic: cubic-bezier(0.87, 0, 0.13, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --font-heebo: 'Heebo', sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ─── Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-heebo);
+  direction: rtl;
+  overflow: hidden;
+  overflow-x: hidden;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ─── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--accent-red); border-radius: 2px; }
+
+/* ─── Grain / Film texture ───────────────────────────────────── */
+.slide-grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 5;
+  border-radius: inherit;
+}
+
+/* ─── Cinematic slide backgrounds ────────────────────────────── */
+.slide-bg {
+  background: radial-gradient(ellipse at 20% 50%, rgba(220, 38, 38, 0.07) 0%, #0a0a0a 65%);
+}
+.slide-bg-alt {
+  background: radial-gradient(ellipse at 80% 40%, rgba(220, 38, 38, 0.06) 0%, #080808 65%);
+}
+
+/* ─── Glass card ─────────────────────────────────────────────── */
+.glass-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.4s var(--ease-smooth);
+  will-change: transform;
+}
+
+.glass-card:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+  box-shadow: 0 0 40px rgba(220, 38, 38, 0.1), var(--card-shadow);
+  transform: translateY(-4px);
+}
+
+@supports not (backdrop-filter: blur(20px)) {
+  .glass-card { background: rgba(22, 22, 22, 0.95); }
+}
+
+/* ─── Gradient text ──────────────────────────────────────────── */
+.gradient-text {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-outline {
+  -webkit-text-stroke: 2px #dc2626;
+  color: transparent;
+}
+
+/* ─── Cinematic heading ──────────────────────────────────────── */
+.heading-glow {
+  text-shadow: 0 0 40px rgba(220, 38, 38, 0.3), 0 0 80px rgba(220, 38, 38, 0.1);
+  letter-spacing: -0.02em;
+}
+
+/* ─── CTA Button ─────────────────────────────────────────────── */
+.cta-button {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  border-radius: 50px;
+  font-weight: 700;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(220, 38, 38, 0.35);
+  transition: all 0.3s var(--ease-out-fast);
+  will-change: transform;
+  cursor: pointer;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 44px rgba(220, 38, 38, 0.55);
+}
+
+.cta-button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.15) 50%, transparent 60%);
+  transform: translateX(-100%);
+  animation: shimmer 2.8s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ─── Pulse red ──────────────────────────────────────────────── */
+@keyframes pulse-red {
+  0%, 100% { box-shadow: 0 4px 24px rgba(220, 38, 38, 0.35); }
+  50%       { box-shadow: 0 4px 40px rgba(220, 38, 38, 0.7), 0 0 0 8px rgba(220, 38, 38, 0.08); }
+}
+.animate-pulse-red { animation: pulse-red 2.2s ease-in-out infinite; }
+
+/* ─── Red accent line ────────────────────────────────────────── */
+.accent-line {
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #dc2626, transparent);
+  border-radius: 2px;
+}
+
+.accent-line-center {
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #dc2626, transparent);
+  border-radius: 2px;
+  margin: 0 auto;
+}
+
+/* ─── Vignette overlay ───────────────────────────────────────── */
+.vignette {
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.65) 100%);
+  pointer-events: none;
+}
+
+/* ─── Floating particles ─────────────────────────────────────── */
+@keyframes float-up {
+  0%   { transform: translateY(0) translateX(0) rotate(0deg);   opacity: 0.14; }
+  33%  { transform: translateY(-33vh) translateX(12px) rotate(30deg); opacity: 0.07; }
+  66%  { transform: translateY(-66vh) translateX(-8px) rotate(60deg); opacity: 0.04; }
+  100% { transform: translateY(-110vh) translateX(20px) rotate(90deg); opacity: 0; }
+}
+.particle { animation: float-up linear infinite; }
+
+/* ─── Flip card ──────────────────────────────────────────────── */
+.flip-card { perspective: 1200px; }
+.flip-card-inner {
+  transition: transform 0.7s var(--ease-smooth), box-shadow 0.7s ease;
+  transform-style: preserve-3d;
+  position: relative;
+}
+.flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+.flip-card-front,
+.flip-card-back {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  position: absolute;
+  inset: 0;
+}
+.flip-card-back { transform: rotateY(180deg); }
+
+/* ─── Typing cursor ──────────────────────────────────────────── */
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+.typing-cursor::after {
+  content: '|';
+  animation: blink 0.7s step-end infinite;
+  color: #dc2626;
+  font-weight: 100;
+}
+
+/* ─── Swiper / Nav dots ──────────────────────────────────────── */
+.swiper-pagination-bullet {
+  background: rgba(255,255,255,0.25) !important;
+  opacity: 1 !important;
+  width: 8px !important;
+  height: 8px !important;
+  transition: all 0.35s ease !important;
+}
+.swiper-pagination-bullet-active {
+  background: #dc2626 !important;
+  width: 26px !important;
+  border-radius: 4px !important;
+  box-shadow: 0 0 16px rgba(220, 38, 38, 0.6) !important;
+}
+
+/* ─── Leaflet dark ───────────────────────────────────────────── */
+.leaflet-container {
+  background: #111 !important;
+  border-radius: 14px;
+}
+.leaflet-tile-pane {
+  filter: invert(1) hue-rotate(180deg) brightness(0.82) contrast(0.88) saturate(0.7);
+}
+
+/* ─── Slide RTL wrapper ──────────────────────────────────────── */
+.slide-rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+/* ─── Background patterns ────────────────────────────────────── */
+/* Each class bakes in BOTH the SVG pattern AND the radial red glow,
+   so no inline background style is needed on the slide elements.    */
+
+/* Slide 2 – DNA: basketball court lines + top-right red glow */
+.bg-pattern-court {
+  background-color: #0a0a0a;
+  background-image:
+    url("data:image/svg+xml,<svg viewBox='0 0 1200 800' xmlns='http://www.w3.org/2000/svg'><rect x='60' y='25' width='1080' height='750' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='2'/><line x1='60' y1='400' x2='1140' y2='400' stroke='rgba(255,255,255,0.06)' stroke-width='2'/><circle cx='600' cy='400' r='80' fill='none' stroke='rgba(255,255,255,0.055)' stroke-width='2'/><rect x='455' y='25' width='290' height='185' fill='none' stroke='rgba(255,255,255,0.045)' stroke-width='1.5'/><circle cx='600' cy='210' r='80' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1.5' stroke-dasharray='10 8'/><line x1='185' y1='25' x2='185' y2='150' stroke='rgba(255,255,255,0.045)' stroke-width='1.5'/><line x1='1015' y1='25' x2='1015' y2='150' stroke='rgba(255,255,255,0.045)' stroke-width='1.5'/><path d='M 185 150 Q 600 490 1015 150' fill='none' stroke='rgba(255,255,255,0.045)' stroke-width='1.5'/><rect x='455' y='590' width='290' height='185' fill='none' stroke='rgba(255,255,255,0.045)' stroke-width='1.5'/><circle cx='600' cy='590' r='80' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1.5' stroke-dasharray='10 8'/><line x1='185' y1='775' x2='185' y2='650' stroke='rgba(255,255,255,0.045)' stroke-width='1.5'/><line x1='1015' y1='775' x2='1015' y2='650' stroke='rgba(255,255,255,0.045)' stroke-width='1.5'/><path d='M 185 650 Q 600 310 1015 650' fill='none' stroke='rgba(255,255,255,0.045)' stroke-width='1.5'/></svg>"),
+    radial-gradient(ellipse at 92% 5%, rgba(230,57,70,0.09) 0%, transparent 55%);
+  background-size: cover, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+}
+
+/* Slide 3 – Coaches: parquet wood blocks + bottom-left red glow */
+.bg-pattern-parquet {
+  background-color: #080808;
+  background-image:
+    url("data:image/svg+xml,<svg width='80' height='80' xmlns='http://www.w3.org/2000/svg'><line x1='0' y1='13' x2='40' y2='13' stroke='rgba(255,255,255,0.04)' stroke-width='0.8'/><line x1='0' y1='26' x2='40' y2='26' stroke='rgba(255,255,255,0.04)' stroke-width='0.8'/><rect x='0' y='0' width='40' height='40' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='0.8'/><line x1='53' y1='0' x2='53' y2='40' stroke='rgba(255,255,255,0.04)' stroke-width='0.8'/><line x1='66' y1='0' x2='66' y2='40' stroke='rgba(255,255,255,0.04)' stroke-width='0.8'/><rect x='40' y='0' width='40' height='40' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='0.8'/><line x1='13' y1='40' x2='13' y2='80' stroke='rgba(255,255,255,0.04)' stroke-width='0.8'/><line x1='26' y1='40' x2='26' y2='80' stroke='rgba(255,255,255,0.04)' stroke-width='0.8'/><rect x='0' y='40' width='40' height='40' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='0.8'/><line x1='40' y1='53' x2='80' y2='53' stroke='rgba(255,255,255,0.04)' stroke-width='0.8'/><line x1='40' y1='66' x2='80' y2='66' stroke='rgba(255,255,255,0.04)' stroke-width='0.8'/><rect x='40' y='40' width='40' height='40' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='0.8'/></svg>"),
+    radial-gradient(ellipse at 5% 95%, rgba(230,57,70,0.08) 0%, transparent 55%);
+  background-size: 80px 80px, cover;
+  background-position: top left, center;
+  background-repeat: repeat, no-repeat;
+}
+
+/* Slide 4 – Arena: tactical board (X O arrows) + top-left red glow */
+.bg-pattern-tactical {
+  background-color: #0a0a0a;
+  background-image:
+    url("data:image/svg+xml,<svg viewBox='0 0 1200 800' xmlns='http://www.w3.org/2000/svg'><g stroke='rgba(255,255,255,0.055)' stroke-width='2.5' stroke-linecap='round' fill='none'><line x1='106' y1='176' x2='134' y2='204'/><line x1='134' y1='176' x2='106' y2='204'/><line x1='466' y1='276' x2='494' y2='304'/><line x1='494' y1='276' x2='466' y2='304'/><line x1='316' y1='526' x2='344' y2='554'/><line x1='344' y1='526' x2='316' y2='554'/><line x1='856' y1='306' x2='884' y2='334'/><line x1='884' y1='306' x2='856' y2='334'/><line x1='1046' y1='436' x2='1074' y2='464'/><line x1='1074' y1='436' x2='1046' y2='464'/><line x1='686' y1='646' x2='714' y2='674'/><line x1='714' y1='646' x2='686' y2='674'/><line x1='786' y1='136' x2='814' y2='164'/><line x1='814' y1='136' x2='786' y2='164'/></g><g fill='none' stroke='rgba(255,255,255,0.05)' stroke-width='2.5'><circle cx='270' cy='140' r='22'/><circle cx='710' cy='200' r='22'/><circle cx='950' cy='590' r='22'/><circle cx='200' cy='630' r='22'/><circle cx='580' cy='390' r='22'/></g><g stroke='rgba(255,255,255,0.035)' stroke-width='1.5' stroke-dasharray='8 6' fill='none'><line x1='270' y1='162' x2='466' y2='276'/><line x1='732' y1='200' x2='856' y2='306'/><line x1='950' y1='568' x2='1046' y2='464'/></g><g stroke='rgba(255,255,255,0.05)' stroke-width='1.8' fill='none' stroke-linecap='round'><line x1='360' y1='385' x2='525' y2='390'/><path d='M 525 390 L 510 380 M 525 390 L 510 400'/><path d='M 580 412 Q 640 540 700 646'/><path d='M 700 646 L 686 630 M 700 646 L 685 660'/><line x1='200' y1='608' x2='323' y2='560'/><path d='M 323 560 L 308 558 M 323 560 L 315 547'/></g></svg>"),
+    radial-gradient(ellipse at 8% 5%, rgba(230,57,70,0.08) 0%, transparent 55%);
+  background-size: cover, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+}
+
+/* Slide 5 – Schedule: planning grid + bottom-right red glow */
+.bg-pattern-chalk {
+  background-color: #0a0a0a;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.04) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(255,255,255,0.025) 80px),
+    radial-gradient(ellipse at 95% 92%, rgba(230,57,70,0.08) 0%, transparent 50%);
+  background-size: auto, auto, cover;
+  background-repeat: repeat, repeat, no-repeat;
+}
+
+/* Slide 6 – Hotel: ocean waves + top-center red glow */
+.bg-pattern-waves {
+  background-color: #0a0a0a;
+  background-image:
+    url("data:image/svg+xml,<svg viewBox='0 0 1200 800' xmlns='http://www.w3.org/2000/svg'><g fill='none' stroke-linecap='round'><path d='M 0 100 Q 150 60 300 100 Q 450 140 600 100 Q 750 60 900 100 Q 1050 140 1200 100' stroke='rgba(255,255,255,0.05)' stroke-width='1.5'/><path d='M 0 210 Q 200 160 400 210 Q 600 260 800 210 Q 1000 160 1200 210' stroke='rgba(255,255,255,0.045)' stroke-width='1.5'/><path d='M 0 330 Q 150 290 300 330 Q 450 370 600 330 Q 750 290 900 330 Q 1050 370 1200 330' stroke='rgba(255,255,255,0.055)' stroke-width='2'/><path d='M 0 460 Q 200 410 400 460 Q 600 510 800 460 Q 1000 410 1200 460' stroke='rgba(255,255,255,0.04)' stroke-width='1.5'/><path d='M 0 570 Q 150 530 300 570 Q 450 610 600 570 Q 750 530 900 570 Q 1050 610 1200 570' stroke='rgba(255,255,255,0.035)' stroke-width='1'/><path d='M 0 680 Q 200 640 400 680 Q 600 720 800 680 Q 1000 640 1200 680' stroke='rgba(255,255,255,0.03)' stroke-width='1'/></g></svg>"),
+    radial-gradient(ellipse at 50% 0%, rgba(230,57,70,0.08) 0%, transparent 50%);
+  background-size: cover, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+}
+
+/* Slide 7 – Attractions: dot grid + bottom-center red glow */
+.bg-pattern-dots {
+  background-color: #0a0a0a;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.07) 1.5px, transparent 1.5px),
+    radial-gradient(ellipse at 50% 100%, rgba(230,57,70,0.08) 0%, transparent 50%);
+  background-size: 28px 28px, cover;
+  background-repeat: repeat, no-repeat;
+}
+
+/* Slide 8 – Security: hexagon tessellation + left-center red glow */
+.bg-pattern-hex {
+  background-color: #0a0a0a;
+  background-image:
+    url("data:image/svg+xml,<svg width='111' height='112' xmlns='http://www.w3.org/2000/svg'><polygon points='27.7,0 54.5,16 54.5,48 27.7,64 0.9,48 0.9,16' fill='none' stroke='rgba(255,255,255,0.055)' stroke-width='1'/><polygon points='83.1,0 109.9,16 109.9,48 83.1,64 56.3,48 56.3,16' fill='none' stroke='rgba(255,255,255,0.055)' stroke-width='1'/><polygon points='27.7,48 54.5,64 54.5,96 27.7,112 0.9,96 0.9,64' fill='none' stroke='rgba(255,255,255,0.055)' stroke-width='1'/><polygon points='83.1,48 109.9,64 109.9,96 83.1,112 56.3,96 56.3,64' fill='none' stroke='rgba(255,255,255,0.055)' stroke-width='1'/></svg>"),
+    radial-gradient(ellipse at 0% 50%, rgba(230,57,70,0.09) 0%, transparent 50%);
+  background-size: 111px 112px, cover;
+  background-repeat: repeat, no-repeat;
+}
+
+/* Slide 9 – Testimonials: giant quote marks + right-center red glow */
+.bg-pattern-quotes {
+  background-color: #0a0a0a;
+  background-image:
+    url("data:image/svg+xml,<svg viewBox='0 0 1200 800' xmlns='http://www.w3.org/2000/svg'><text x='-40' y='380' font-size='440' font-family='Georgia,serif' fill='rgb(230,57,70)' opacity='0.045'>❝</text><text x='820' y='840' font-size='360' font-family='Georgia,serif' fill='white' opacity='0.04'>❞</text></svg>"),
+    radial-gradient(ellipse at 100% 50%, rgba(230,57,70,0.08) 0%, transparent 50%);
+  background-size: cover, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+}
+
+/* Slide 10 – Gallery preview: photo contact-sheet grid + top-left red glow */
+.bg-pattern-camera {
+  background-color: #0a0a0a;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 57px, rgba(255,255,255,0.035) 59px),
+    repeating-linear-gradient(90deg, transparent, transparent 57px, rgba(255,255,255,0.035) 59px),
+    radial-gradient(ellipse at 5% 5%, rgba(230,57,70,0.08) 0%, transparent 50%);
+  background-size: auto, auto, cover;
+  background-repeat: repeat, repeat, no-repeat;
+}
+
+/* Slide 11 – Registration: radial burst lines + center red glow */
+.bg-pattern-burst {
+  background-color: #0a0a0a;
+  background-image:
+    url("data:image/svg+xml,<svg viewBox='0 0 1200 800' xmlns='http://www.w3.org/2000/svg'><g stroke='rgb(230,57,70)' stroke-width='1' opacity='0.05'><line x1='600' y1='400' x2='1200' y2='400'/><line x1='600' y1='400' x2='1200' y2='561'/><line x1='600' y1='400' x2='1200' y2='747'/><line x1='600' y1='400' x2='1000' y2='800'/><line x1='600' y1='400' x2='831' y2='800'/><line x1='600' y1='400' x2='707' y2='800'/><line x1='600' y1='400' x2='600' y2='800'/><line x1='600' y1='400' x2='493' y2='800'/><line x1='600' y1='400' x2='369' y2='800'/><line x1='600' y1='400' x2='200' y2='800'/><line x1='600' y1='400' x2='0' y2='747'/><line x1='600' y1='400' x2='0' y2='561'/><line x1='600' y1='400' x2='0' y2='400'/><line x1='600' y1='400' x2='0' y2='239'/><line x1='600' y1='400' x2='0' y2='54'/><line x1='600' y1='400' x2='200' y2='0'/><line x1='600' y1='400' x2='369' y2='0'/><line x1='600' y1='400' x2='493' y2='0'/><line x1='600' y1='400' x2='600' y2='0'/><line x1='600' y1='400' x2='707' y2='0'/><line x1='600' y1='400' x2='831' y2='0'/><line x1='600' y1='400' x2='1000' y2='0'/><line x1='600' y1='400' x2='1200' y2='54'/><line x1='600' y1='400' x2='1200' y2='239'/></g></svg>"),
+    radial-gradient(ellipse at 50% 50%, rgba(230,57,70,0.12) 0%, transparent 65%);
+  background-size: cover, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+}
+
+/* ─── Mobile nav: hide arrows on small screens ───────────────── */
+.nav-arrow { display: none; }
+@media (min-width: 768px) { .nav-arrow { display: flex; } }
+
+/* ─── reduced-motion ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
