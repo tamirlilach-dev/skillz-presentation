@@ -47,7 +47,7 @@ export default function Presentation() {
   }, []);
 
   return (
-    <div className="w-full h-screen overflow-hidden relative" style={{ background: "#0a0a0a" }}>
+    <div className="w-full h-screen overflow-y-auto lg:overflow-hidden relative" style={{ background: "#0a0a0a" }}>
       <BasketballParticles />
 
       <Swiper
@@ -61,12 +61,13 @@ export default function Presentation() {
         speed={600}
         onSwiper={setSwiper}
         onSlideChange={handleSlideChange}
+        autoHeight
         className="w-full h-full"
         style={{ direction: "ltr" }}
         a11y={{ prevSlideMessage: "הסלייד הקודם", nextSlideMessage: "הסלייד הבא" }}
       >
         {SLIDES.map((SlideComponent, index) => (
-          <SwiperSlide key={index} className="h-screen overflow-hidden">
+          <SwiperSlide key={index}>
             <SlideComponent isActive={currentSlide === index} />
           </SwiperSlide>
         ))}
