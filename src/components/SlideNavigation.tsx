@@ -33,7 +33,7 @@ export default function SlideNavigation({ swiper, currentSlide, totalSlides }: S
       {currentSlide > 0 && (
         <button
           onClick={goPrev}
-          className="nav-arrow fixed top-1/2 -translate-y-1/2 z-50 group hidden md:flex"
+          className="nav-arrow fixed top-1/2 -translate-y-1/2 z-50 group hidden lg:flex"
           style={{ ...arrowStyle, right: 80 }}
           aria-label="הסלייד הקודם"
           onMouseEnter={(e) => {
@@ -61,7 +61,7 @@ export default function SlideNavigation({ swiper, currentSlide, totalSlides }: S
       {currentSlide < totalSlides - 1 && (
         <button
           onClick={goNext}
-          className="nav-arrow fixed top-1/2 -translate-y-1/2 z-50 group hidden md:flex"
+          className="nav-arrow fixed top-1/2 -translate-y-1/2 z-50 group hidden lg:flex"
           style={{ ...arrowStyle, left: 80 }}
           aria-label="הסלייד הבא"
           onMouseEnter={(e) => {
