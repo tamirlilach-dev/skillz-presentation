@@ -25,7 +25,7 @@ export default function AttractionsSlide({ isActive }: AttractionsSlideProps) {
   return (
     <div
       dir="rtl"
-      className="slide-rtl w-full h-screen flex flex-col items-center justify-center px-4 md:px-12 gap-6 md:gap-8 relative overflow-hidden slide-grain bg-pattern-dots"
+      className="slide-rtl w-full h-screen flex flex-col items-center justify-start md:justify-center px-4 md:px-12 gap-3 md:gap-6 relative overflow-y-auto md:overflow-hidden slide-grain bg-pattern-dots py-6 md:py-0"
     >
       {/* Title */}
       {isActive && (
@@ -85,7 +85,7 @@ export default function AttractionsSlide({ isActive }: AttractionsSlideProps) {
                 </h3>
               </div>
             </div>
-            <div className="p-5" style={{ background: "rgba(255,255,255,0.025)", backdropFilter: "blur(12px)" }}>
+            <div className="p-3 md:p-5" style={{ background: "rgba(255,255,255,0.025)", backdropFilter: "blur(12px)" }}>
               <p className="text-xs md:text-sm leading-relaxed" style={{ color: "#b0b0b0", lineHeight: 1.65 }}>
                 חצי יום של שבירת שגרה ואדרנלין בפארק המים הגדול בלימסול. כלול במחיר ההשתתפות.
               </p>
@@ -117,7 +117,7 @@ export default function AttractionsSlide({ isActive }: AttractionsSlideProps) {
                 <h3 className="text-lg md:text-xl font-black text-white">זמן חופשי ומסחר</h3>
               </div>
             </div>
-            <div className="p-5" style={{ background: "rgba(255,255,255,0.025)", backdropFilter: "blur(12px)", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+            <div className="p-3 md:p-5" style={{ background: "rgba(255,255,255,0.025)", backdropFilter: "blur(12px)", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
               <p className="text-xs md:text-sm leading-relaxed" style={{ color: "#b0b0b0", lineHeight: 1.65 }}>
                 ביקור מתוכנן בקניון המקומי לקניות, התאווררות וגיבוש חברתי. מומלץ להביא דמי כיס.
               </p>

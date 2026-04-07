@@ -35,7 +35,7 @@ export default function ArenaSlide({ isActive }: ArenaSlideProps) {
   return (
     <div
       dir="rtl"
-      className="slide-rtl w-full h-screen flex flex-col items-center justify-center px-4 md:px-12 gap-5 relative overflow-hidden slide-grain bg-pattern-tactical"
+      className="slide-rtl w-full h-screen flex flex-col items-center justify-start md:justify-center px-4 md:px-12 gap-4 md:gap-5 relative overflow-y-auto md:overflow-hidden slide-grain bg-pattern-tactical py-4 md:py-0"
     >
       {/* Title */}
       {isActive && (
@@ -68,7 +68,7 @@ export default function ArenaSlide({ isActive }: ArenaSlideProps) {
           >
             {/* Rotated frame with neon border */}
             <div
-              className="relative h-52 md:h-68 rounded-2xl overflow-hidden"
+              className="relative h-40 md:h-64 rounded-2xl overflow-hidden"
               style={{
                 transform: "rotate(2deg)",
                 border: "1px solid #e63946",

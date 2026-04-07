@@ -41,7 +41,7 @@ export default function HotelSlide({ isActive }: HotelSlideProps) {
   return (
     <div
       dir="rtl"
-      className="slide-rtl w-full h-screen flex flex-col items-center justify-center px-4 md:px-12 gap-5 relative overflow-hidden slide-grain bg-pattern-waves"
+      className="slide-rtl w-full h-screen flex flex-col items-center justify-start md:justify-center px-4 md:px-12 gap-4 md:gap-5 relative overflow-y-auto md:overflow-hidden slide-grain bg-pattern-waves py-6 md:py-0"
     >
       {/* Title */}
       {isActive && (

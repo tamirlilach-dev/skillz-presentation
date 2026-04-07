@@ -43,7 +43,7 @@ export default function TestimonialsSlide({ isActive }: TestimonialsSlideProps) 
   return (
     <div
       dir="rtl"
-      className="slide-rtl w-full h-screen flex flex-col items-center justify-center px-4 md:px-12 gap-6 md:gap-8 relative overflow-hidden slide-grain"
+      className="slide-rtl w-full h-screen flex flex-col items-center justify-start md:justify-center px-4 md:px-12 gap-4 md:gap-6 relative overflow-y-auto md:overflow-hidden slide-grain py-6 md:py-0"
       style={{ background: "#0a0a0a" }}
     >
       {/* ── Layer 1 (z:1): photo ─────────────────────────────── */}
@@ -68,7 +68,7 @@ export default function TestimonialsSlide({ isActive }: TestimonialsSlideProps) 
         className="absolute font-black select-none pointer-events-none"
         style={{
           top: "2%", right: "2%",
-          fontSize: "clamp(80px, 15vw, 200px)", lineHeight: 1,
+          fontSize: "clamp(56px, 12vw, 160px)", lineHeight: 1,
           color: "#dc2626", opacity: 0.12,
           fontFamily: "serif",
           zIndex: 3,
@@ -80,7 +80,7 @@ export default function TestimonialsSlide({ isActive }: TestimonialsSlideProps) 
         className="absolute font-black select-none pointer-events-none"
         style={{
           bottom: "2%", left: "2%",
-          fontSize: "clamp(80px, 15vw, 200px)", lineHeight: 1,
+          fontSize: "clamp(56px, 12vw, 160px)", lineHeight: 1,
           color: "#dc2626", opacity: 0.12,
           fontFamily: "serif",
           zIndex: 3,
@@ -129,7 +129,7 @@ export default function TestimonialsSlide({ isActive }: TestimonialsSlideProps) 
                   borderRight: "3px solid #e63946",
                   backdropFilter: "blur(10px)",
                   boxShadow: "0 0 8px rgba(230,57,70,0.3), 0 0 20px rgba(230,57,70,0.12)",
-                  padding: "32px",
+                  padding: "clamp(16px, 4vw, 32px)",
                 }}
               >
                 <p
